@@ -1,6 +1,6 @@
 import { Server } from './server';
 
-export class MoocBackendApp {
+export class AuthBackendApp {
   server?: Server;
 
   async start() {

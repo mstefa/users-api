@@ -2,12 +2,12 @@ const common = [
   '--require-module ts-node/register' // Load TypeScript module
 ];
 
-const mooc_backend = [
+const auth_backend = [
   ...common,
-  'tests/apps/mooc/backend/features/**/*.feature',
-  '--require tests/apps/mooc/backend/features/step_definitions/*.steps.ts'
+  'tests/apps/auth/backend/features/**/*.feature',
+  '--require tests/apps/auth/backend/features/step_definitions/*.steps.ts'
 ].join(' ');
 
 module.exports = {
-  mooc_backend
+  auth_backend
 };
