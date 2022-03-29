@@ -1,6 +1,9 @@
 services:
 
-  Apps.mooc.controllers.StatusGetController:
+  Apps.auth.controllers.StatusGetController:
     class: ../../controllers/StatusGetController
     arguments: []
 
+  Apps.auth.controllers.UserPostController:
+    class: ../../controllers/UserPostController
+    arguments: []

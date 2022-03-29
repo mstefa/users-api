@@ -4,7 +4,7 @@ Feature: Create a new user account
   I want to create an account
 
   Scenario: A valid non existing user
-    Given I send a POST request to "/accounts/" with body: 
+    Given I send a POST request to "/users" with body: 
     """
     {
       "id": "ef8ac118-8d7f-49cc-abec-78e0d05af80a",
