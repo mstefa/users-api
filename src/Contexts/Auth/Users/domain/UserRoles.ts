@@ -1,12 +1,12 @@
 import { InvalidArgumentError } from "../../../Shared/domain/errors";
 import { Roles } from "./Roles";
 
-export abstract class UserRoles {
+export class UserRoles {
 
-  readonly value: [string];
+  readonly value: Array<string>;
   readonly roles = Roles
 
-  constructor(value: [string]) {
+  constructor(value: Array<string>) {
 
   value.forEach(element => {
     if (!(element in this.roles)) {

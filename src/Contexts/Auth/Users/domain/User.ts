@@ -1,5 +1,6 @@
+import { UserCountry } from './UserCountry';
 import { AggregateRoot } from "../../../Shared/domain/AggregateRoot";
-import { UserId } from "../../Shared/domain/Users/userId";
+import { UserId } from "../../Shared/domain/Users/UserId";
 import { UserEmail } from "./UserEmail";
 import { UserFirstName } from "./UserFirstName";
 import { UserLastName } from "./UserLastName";
@@ -16,9 +17,10 @@ export class User extends AggregateRoot {
   readonly lastName: UserLastName;
   readonly email: UserEmail;
   readonly roles: UserRoles;
+  readonly country: UserCountry;
   readonly phone: UserPhone;
 
-  constructor({ id, userName, password, firstName, lastName, email, roles, phone }: { id: UserId, userName: UserName, password: UserPassword, firstName : UserFirstName, lastName: UserLastName, email: UserEmail, roles : UserRoles, phone: UserPhone }){
+  constructor({ id, userName, password, firstName, lastName, email, roles, country, phone }: { id: UserId, userName: UserName, password: UserPassword, firstName : UserFirstName, lastName: UserLastName, email: UserEmail, roles : UserRoles, country: UserCountry, phone: UserPhone }){
     super()
     this.id = id;
     this.userName = userName;
@@ -27,11 +29,9 @@ export class User extends AggregateRoot {
     this.lastName = lastName;
     this.email = email;
     this.roles = roles;
+    this.country = country;
     this.phone = phone;
   }
-
-
-
 
   toPrimitives() {
     return {
