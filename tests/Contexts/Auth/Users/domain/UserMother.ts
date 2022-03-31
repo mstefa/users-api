@@ -13,13 +13,13 @@ import { UserCountry } from '../../../../../src/Contexts/Auth/Users/domain/UserC
 
 export class UserMother{
   static create(
-    id: UserId, 
-    userName: UserName, 
-    password: UserPassword, 
-    firstName : UserFirstName, 
-    lastName: UserLastName, 
-    email: UserEmail, 
-    roles : UserRoles, 
+    id: UserId,
+    userName: UserName,
+    password: UserPassword,
+    firstName : UserFirstName,
+    lastName: UserLastName,
+    email: UserEmail,
+    roles : UserRoles,
     country: UserCountry,
     phone: UserPhone
     ){
@@ -27,6 +27,7 @@ export class UserMother{
     }
 
     static fromRequest(request: CreateUserRequest): User {
+
       return this.create(
         new UserId(request.id),
         new UserName(request.user_name),

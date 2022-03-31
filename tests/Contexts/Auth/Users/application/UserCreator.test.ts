@@ -1,22 +1,24 @@
 import { UserCreator } from './../../../../../src/Contexts/Auth/Users/application/UserCreator';
 import { UserMother } from "../domain/UserMother";
 import { CreateUserRequestMother } from "./CreateUserRequestMother"
+import { UserRepositoryMock } from '../mocks/UserRepositoryMock';
 
+let repository: UserRepositoryMock;
 let creator: UserCreator;
 
 beforeEach(() => {
-    // repository = new CourseRepositoryMock();
-    creator = new UserCreator();
+    repository = new UserRepositoryMock();
+    creator = new UserCreator(repository);
   });
 
 describe('UserCreator', () => {
     it('should create a valid User', async () => {
         const request = CreateUserRequestMother.random();
-        console.log(request)
 
         const user = UserMother.fromRequest(request);
 
-        console.log(user)
         await creator.run(request);
+
+        repository.assertLastSavedUserIs(user);
     })
 })

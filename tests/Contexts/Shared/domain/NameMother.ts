@@ -1,7 +1,7 @@
 import * as faker from 'faker';
 
-export class UuidMother {
+export class NameMother {
   static random(): string {
-    return faker.datatype.uuid();
+    return faker.name.firstName();
   }
 }
