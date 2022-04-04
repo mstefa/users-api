@@ -19,4 +19,5 @@ Feature: Create a new user account
     }
     """
     Then the response status code should be 201
+    Then the user should be save in the db with "ef8ac118-8d7f-49cc-abec-78e0d05af80a"
     And the response should be empty

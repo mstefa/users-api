@@ -11,9 +11,9 @@ interface UserDocument {
   firstName: string;
   lastName: string;
   email: string;
-  Roles: Array<string>;
-  countryId: string;
-  phoneNumber: string;
+  roles: Array<string>;
+  country: string;
+  phone: string;
 };
 
 export class MongoUserRepository extends MongoRepository<User> implements UserRepository {
@@ -25,9 +25,17 @@ export class MongoUserRepository extends MongoRepository<User> implements UserRe
   async search(id: UserId): Promise<Nullable<User>> {
     const collection = await this.collection();
     const document = await collection.findOne<UserDocument>({ _id: id.value });
-    console.log(document)
-    return null;
-    // return document ? User.fromPrimitives({ name: document.name, duration: document.duration, id: id.value }) : null;
+    return document ? User.fromPrimitives({
+      id: document._id,
+      userName: document.userName,
+      password: document.password,
+      firstName: document.firstName,
+      lastName: document.lastName,
+      email: document.email,
+      roles: document.roles,
+      country: document.country,
+      phone: document.phone,
+    }) : null;
   }
   protected collectionName(): string {
     return 'courses';

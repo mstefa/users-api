@@ -36,14 +36,39 @@ export class User extends AggregateRoot {
   toPrimitives() {
     return {
       id: this.id.value,
-      userName: this.userName,
-      password: this.password,
-      firstName : this.firstName,
-      lastName : this.lastName,
-      email : this.email,
-      roles : this.roles,
-      phone : this.phone,
+      userName: this.userName.value,
+      password: this.password.value,
+      firstName : this.firstName.value,
+      lastName : this.lastName.value,
+      email : this.email.value,
+      roles : this.roles.value,
+      country : this.country.value,
+      phone : this.phone.value,
     }
+  }
+
+  static fromPrimitives(plainData: {
+    id: string;
+    userName: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    roles: Array<string>;
+    country: string;
+    phone: string;
+  }): User {
+    return new User({
+      id: new UserId(plainData.id),
+      userName: new UserName(plainData.userName),
+      password: new UserPassword(plainData.password, true),
+      firstName: new UserFirstName(plainData.firstName),
+      lastName: new UserLastName(plainData.lastName),
+      email: new UserEmail(plainData.email),
+      roles: new UserRoles(plainData.roles),
+      country: new UserCountry(plainData.country),
+      phone: new UserPhone(plainData.phone)
+    });
   }
 
 }
