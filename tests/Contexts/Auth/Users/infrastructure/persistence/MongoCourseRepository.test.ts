@@ -18,9 +18,12 @@ afterAll(async () => {
 describe('UserRepository', () => {
   describe('#save', () => {
     it('should save an user', async () => {
-      const user = UserMother.random()
+      const expected = UserMother.random()
 
-      await repository.save(user);
+      await repository.save(expected);
+      const user = await repository.search(expected.id)
+
+      expect({expected}).toEqual(user);
     }
     )
   })
