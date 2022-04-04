@@ -4,13 +4,20 @@ Feature: Create a new user account
   I want to create an account
 
   Scenario: A valid non existing user
-    Given I send a POST request to "/accounts/" with body: 
+    Given I send a POST request to "/users" with body:
     """
     {
       "id": "ef8ac118-8d7f-49cc-abec-78e0d05af80a",
-      "name": "The best course",
-      "duration": "5 hours"
+      "user_name": "mstefa",
+      "password": "Test1234",
+      "first_name": "matias",
+      "last_name": "stefanutti",
+      "email": "mstefanutti24@gmail.com",
+      "country_id": "US",
+      "roles": ["USER"],
+      "phone_number": "+543415552618"
     }
     """
     Then the response status code should be 201
+    Then the user should be save in the db with "ef8ac118-8d7f-49cc-abec-78e0d05af80a"
     And the response should be empty

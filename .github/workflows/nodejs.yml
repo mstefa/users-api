@@ -1,6 +1,6 @@
 name: Node CI
 
-on: [push]
+on: [pull_request]
 
 jobs:
   build:
@@ -18,10 +18,13 @@ jobs:
       - name: npm install
         run: |
           npm install
+          npm run lint
       - name: npm run build
         run: |
           npm run build --if-present
-          npm run lint
+      - name: docker-compose up
+        run: |
+          docker-compose up -d
       - name: npm test
         run: |
           npm test
