@@ -6,4 +6,4 @@ services:
 
   Apps.auth.controllers.UserPostController:
     class: ../../controllers/UserPostController
-    arguments: []
+    arguments: ["@Auth.Users.application.UserCreator"]

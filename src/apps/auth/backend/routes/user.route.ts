@@ -14,7 +14,6 @@ export const register = (router: Router) => {
         body('country_id').exists().isString(),
         body('roles').exists().isArray(),
         body('phone_number').exists().isString(),
-        body('picture_profiel').exists().isString(),
       ];
 
     const controller= container.get('Apps.auth.controllers.UserPostController')

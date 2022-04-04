@@ -1,0 +1,19 @@
+services:
+  Auth.MongoConfig:
+    factory:
+      class: ../../../../../Contexts/Auth/Shared/infrastructure/persistence/mongo/MongoConfigFactory
+      method: 'createConfig'
+
+  Auth.ConnectionManager:
+    factory:
+      class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: 'createClient'
+    arguments: ['auth', '@Auth.MongoConfig']
+
+  Auth.Users.domain.UserRepository:
+    class: ../../../../../Contexts/Auth/Users/infrastructure/persistence/MongoUserRepository
+    arguments: ['@Auth.ConnectionManager']
+
+  Auth.Users.application.UserCreator:
+    class: ../../../../../Contexts/Auth/Users/application/UserCreator
+    arguments: ['@Auth.Users.domain.UserRepository']

@@ -1,3 +1,4 @@
+import { UserId } from '../../../../../src/Contexts/Auth/Shared/domain/Users/UserId';
 import { User } from '../../../../../src/Contexts/Auth/Users/domain/User';
 import { UserRepository } from './../../../../../src/Contexts/Auth/Users/domain/UserRepository';
 export class UserRepositoryMock implements UserRepository{
@@ -8,7 +9,7 @@ export class UserRepositoryMock implements UserRepository{
     this.mockSave(course);
   }
 
-  search(course: User): Promise<void> {
+  search(id: UserId): Promise<User> {
     throw new Error('Method not implemented.');
   }
 

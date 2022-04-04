@@ -1,6 +1,8 @@
+import { Nullable } from '../../../Shared/domain/Nullable';
+import { UserId } from '../../Shared/domain/Users/UserId';
 import { User } from './User';
 
 export interface UserRepository {
-  save(course: User): Promise<void>;
-  search(course: User): Promise<void>;
+  save(user: User): Promise<void>;
+  search(id: UserId): Promise<Nullable<User>>;
 }
