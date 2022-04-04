@@ -1,5 +1,5 @@
-import { InvalidArgumentError } from "../errors";
-import { Country } from "./CountryEnum";
+import { InvalidArgumentError } from '../errors';
+import { Country } from './CountryEnum';
 
 export abstract class CountryValueObject {
 

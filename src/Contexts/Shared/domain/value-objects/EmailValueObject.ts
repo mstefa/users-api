@@ -2,12 +2,12 @@ import { InvalidArgumentError } from '../errors/index';
 
 export abstract class EmailValueObject {
     readonly value: string;
-  
+
     constructor(value: string) {
       this.ensureIsValidEmail(value);
       this.value = value;
     }
-  
+
     toString(): string {
       return this.value;
     }

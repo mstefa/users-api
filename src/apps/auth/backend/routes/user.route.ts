@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import container from "../dependency-injection";
+import container from '../dependency-injection';
 import { body } from 'express-validator';
 import { validateReqSchema } from '.';
 
@@ -16,6 +16,6 @@ export const register = (router: Router) => {
         body('phone_number').exists().isString(),
       ];
 
-    const controller= container.get('Apps.auth.controllers.UserPostController')
+    const controller = container.get('Apps.auth.controllers.UserPostController');
     router.post('/users', reqSchema, validateReqSchema, (req: Request, res: Response) => controller.run(req, res));
-}
+};

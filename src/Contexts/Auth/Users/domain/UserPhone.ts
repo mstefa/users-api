@@ -1,3 +1,3 @@
-import { PhoneNumberValueObject } from "../../../Shared/domain/value-objects/PhoneNumberValueObject";
+import { PhoneNumberValueObject } from '../../../Shared/domain/value-objects/PhoneNumberValueObject';
 
-export class UserPhone extends PhoneNumberValueObject{}
+export class UserPhone extends PhoneNumberValueObject {}

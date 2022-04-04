@@ -9,4 +9,3 @@ export type CreateUserRequest = {
     country_id: string;
     phone_number: string;
   };
-  

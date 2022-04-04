@@ -1,6 +1,5 @@
 ////
 
-
 // importar mongoose directamente en el repo de cada boundexContext.
 import { MongoClient } from 'mongodb';
 import MongoConfig from './MongoConfig';

@@ -2,12 +2,12 @@ import { InvalidArgumentError } from '../errors/index';
 
 export abstract class UriValueObject {
     readonly value: string;
-  
+
     constructor(value: string) {
       this.ensureIsValidUri(value);
       this.value = value;
     }
-  
+
     toString(): string {
       return this.value;
     }

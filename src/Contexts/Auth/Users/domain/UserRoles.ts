@@ -1,10 +1,10 @@
-import { InvalidArgumentError } from "../../../Shared/domain/errors";
-import { Roles } from "./Roles";
+import { InvalidArgumentError } from '../../../Shared/domain/errors';
+import { Roles } from './Roles';
 
 export class UserRoles {
 
   readonly value: Array<string>;
-  readonly roles = Roles
+  readonly roles = Roles;
 
   constructor(value: Array<string>) {
 
@@ -13,14 +13,14 @@ export class UserRoles {
       throw new InvalidArgumentError(`<${this.constructor.name}> does not allow the value <${value}>`);
     }
     });
-    
+
     this.value = value;
 
   }
 
   toString(): string {
-    let output : string = '';
-    this.value.forEach(element => output.concat(element + ' '))
+    const output = '';
+    this.value.forEach(element => output.concat(element + ' '));
     return output;
   }
 }

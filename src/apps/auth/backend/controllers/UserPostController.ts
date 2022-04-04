@@ -1,7 +1,7 @@
 import { UserCreator } from './../../../../Contexts/Auth/Users/application/UserCreator';
 import { Request, Response } from 'express';
-import httpStatus from "http-status";
-import { Controller } from "./Controller";
+import httpStatus from 'http-status';
+import { Controller } from './Controller';
 
 type UserPostRequest = Request & {
   body: {
@@ -22,12 +22,14 @@ export class UserPostController implements Controller {
   constructor(private userCreator: UserCreator) { }
 
   async run(req: UserPostRequest, res: Response) {
-    const { id, user_name, password, first_name, last_name, email, roles, country_id, phone_number } = req.body;
-    try{
-        await this.userCreator.run({ id, user_name, password, first_name, last_name, email, roles, country_id, phone_number });
+    const { id, user_name, password, first_name, last_name, email, roles, country_id,
+      phone_number } = req.body;
+    try {
+        await this.userCreator.run({ id, user_name, password, first_name, last_name, email,
+          roles, country_id, phone_number });
         res.status(httpStatus.CREATED).send();
-    } catch(e){
-      console.error(e)
+    } catch (e) {
+      console.error(e);
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send();
     }
   }

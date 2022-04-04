@@ -1,7 +1,6 @@
 import { StringValueObject } from '../../../Shared/domain/value-objects/StringValueObject';
 import { InvalidArgumentError } from '../../../Shared/domain/errors/index';
 
-
 export class UserFirstName extends StringValueObject {
     constructor(value: string) {
         super(value);

@@ -5,14 +5,14 @@ export abstract class PasswordValueObject {
 
   readonly value: string;
 
-  constructor(value: string, encrypted:boolean) {
+  constructor(value: string, encrypted: boolean) {
 
-    if (!encrypted){
+    if (!encrypted) {
 
       this.ensureIsValidPassword(value);
       this.value = this.encrypt(value) ;
 
-    }else{
+    } else {
       this.value = value;
     }
 
@@ -27,17 +27,16 @@ export abstract class PasswordValueObject {
     }
   }
 
-  private encrypt(plaintext : string):string{
+  private encrypt(plaintext: string): string {
 
     const saltRounds = 10;
-    let salt = bcrypt.genSaltSync(saltRounds)
-    return bcrypt.hashSync(plaintext, salt)
+    const salt = bcrypt.genSaltSync(saltRounds);
+    return bcrypt.hashSync(plaintext, salt);
 
   }
 
-  compare(plaintext: string):boolean{
-    return bcrypt.compareSync(plaintext, this.value)
+  compare(plaintext: string): boolean {
+    return bcrypt.compareSync(plaintext, this.value);
   }
-
 
 }

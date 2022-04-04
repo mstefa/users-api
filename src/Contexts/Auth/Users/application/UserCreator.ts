@@ -9,11 +9,11 @@ import { UserPhone } from '../domain/UserPhone';
 import { UserRoles } from '../domain/UserRoles';
 import { UserId } from './../../Shared/domain/Users/UserId';
 import { UserRepository } from './../domain/UserRepository';
-import { CreateUserRequest } from "./CreateUserRequest";
+import { CreateUserRequest } from './CreateUserRequest';
 
 export class UserCreator {
 
-  private repository: UserRepository
+  private repository: UserRepository;
 
   constructor(repository: UserRepository) {
     this.repository = repository;

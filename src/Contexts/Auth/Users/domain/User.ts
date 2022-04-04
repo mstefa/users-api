@@ -1,13 +1,13 @@
 import { UserCountry } from './UserCountry';
-import { AggregateRoot } from "../../../Shared/domain/AggregateRoot";
-import { UserId } from "../../Shared/domain/Users/UserId";
-import { UserEmail } from "./UserEmail";
-import { UserFirstName } from "./UserFirstName";
-import { UserLastName } from "./UserLastName";
-import { UserName } from "./UserName";
-import { UserPassword } from "./UserPassword";
-import { UserPhone } from "./UserPhone";
-import { UserRoles } from "./UserRoles";
+import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { UserId } from '../../Shared/domain/Users/UserId';
+import { UserEmail } from './UserEmail';
+import { UserFirstName } from './UserFirstName';
+import { UserLastName } from './UserLastName';
+import { UserName } from './UserName';
+import { UserPassword } from './UserPassword';
+import { UserPhone } from './UserPhone';
+import { UserRoles } from './UserRoles';
 
 export class User extends AggregateRoot {
   readonly id: UserId;
@@ -20,8 +20,10 @@ export class User extends AggregateRoot {
   readonly country: UserCountry;
   readonly phone: UserPhone;
 
-  constructor({ id, userName, password, firstName, lastName, email, roles, country, phone }: { id: UserId, userName: UserName, password: UserPassword, firstName : UserFirstName, lastName: UserLastName, email: UserEmail, roles : UserRoles, country: UserCountry, phone: UserPhone }){
-    super()
+  constructor({ id, userName, password, firstName, lastName, email, roles, country, phone }:
+    { id: UserId, userName: UserName, password: UserPassword, firstName: UserFirstName, lastName: UserLastName,
+      email: UserEmail, roles: UserRoles, country: UserCountry, phone: UserPhone }) {
+    super();
     this.id = id;
     this.userName = userName;
     this.password = password;
@@ -44,7 +46,7 @@ export class User extends AggregateRoot {
       roles : this.roles.value,
       country : this.country.value,
       phone : this.phone.value,
-    }
+    };
   }
 
   static fromPrimitives(plainData: {

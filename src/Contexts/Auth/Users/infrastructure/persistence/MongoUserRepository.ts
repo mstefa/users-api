@@ -1,6 +1,6 @@
 import { UserRepository } from './../../domain/UserRepository';
 import { User } from './../../domain/User';
-import { MongoRepository } from "../../../../Shared/infrastructure/persistence/mongo/MongoRepository";
+import { MongoRepository } from '../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
 import { Nullable } from '../../../../Shared/domain/Nullable';
 import { UserId } from '../../../Shared/domain/Users/UserId';
 
@@ -14,7 +14,7 @@ interface UserDocument {
   roles: Array<string>;
   country: string;
   phone: string;
-};
+}
 
 export class MongoUserRepository extends MongoRepository<User> implements UserRepository {
 
