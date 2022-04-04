@@ -12,7 +12,8 @@
   },
   "scripts": {
     "dev:auth:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/auth/backend/start.ts",
-    "lint": "tslint src/**/*.ts{,x} --fix",
+    "lint": "tslint src/**/*.ts{,x}",
+    "lint-fix": "tslint src/**/*.ts{,x} --fix",
     "test": "npm run test:unit && npm run test:features",
     "test:unit": "NODE_ENV=test jest",
     "start:auth:backend": "NODE_ENV=production node dist/src/apps/auth/backend/start",
