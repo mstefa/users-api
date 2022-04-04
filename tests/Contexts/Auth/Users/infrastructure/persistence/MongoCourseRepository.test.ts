@@ -23,7 +23,7 @@ describe('UserRepository', () => {
       await repository.save(expected);
       const user = await repository.search(expected.id)
 
-      expect({expected}).toEqual(user);
+      expect(expected).toEqual(user);
     }
     )
   })
