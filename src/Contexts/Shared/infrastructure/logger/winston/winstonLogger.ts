@@ -1,18 +1,15 @@
-import winston, { createLogger, format, transports} from "winston";
+import winston, { createLogger, format, transports} from 'winston';
 import  'winston-daily-rotate-file';
-import moocConfig from "../../../../Auth/Shared/infrastructure/config";
+import moocConfig from '../../../../Auth/Shared/infrastructure/config';
 
-const { combine, timestamp, label, printf } = format;
-
-const myFormat = printf(({ level, message, label, timestamp }) => {
-  return `${timestamp} [${label}] ${level}: ${message}`;
-});
+const myFormat = format.printf(({ level, message, labels, timestamps }) =>
+    `${timestamps} [${labels}] ${level}: ${message}`);
 
 export class Log {
   private static WinstonLogger = createLogger({
-    format: combine(
-      label({ label: moocConfig.get('env') }), //{ label: 'right meow!' }
-      timestamp(),
+    format: format.combine(
+      format.label({ label: moocConfig.get('env') }), //{ label: 'right meow!' }
+      format.timestamp(),
       myFormat
     ),
     transports: [
@@ -33,16 +30,15 @@ export class Log {
   });
 
   static info(message: string) {
-    this.WinstonLogger.info(message)
+    this.WinstonLogger.info(message);
   }
 
-  static warn(message: string){
-    this.WinstonLogger.warn(message)
+  static warn(message: string) {
+    this.WinstonLogger.warn(message);
   }
 
-  static error(message: string){
-    this.WinstonLogger.error(message)
+  static error(message: string) {
+    this.WinstonLogger.error(message);
   }
 
 }
-
