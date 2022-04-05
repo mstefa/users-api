@@ -4,7 +4,7 @@ const moocConfig = convict({
   env: {
     doc: 'The application environment.',
     format: ['production', 'development', 'staging', 'test'],
-    default: 'default',
+    default: 'development',
     env: 'NODE_ENV'
   },
   mongo: {
