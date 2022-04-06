@@ -25,6 +25,7 @@
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "bodybuilder": "^2.4.0",
@@ -42,6 +43,7 @@
     "glob": "^7.2.0",
     "helmet": "^4.6.0",
     "http-status": "^1.5.0",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.4.1",
     "node-dependency-injection": "^2.7.1",
     "nunjucks": "^3.2.3",

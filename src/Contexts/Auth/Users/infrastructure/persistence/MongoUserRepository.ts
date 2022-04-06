@@ -3,6 +3,7 @@ import { User } from './../../domain/User';
 import { MongoRepository } from '../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
 import { Nullable } from '../../../../Shared/domain/Nullable';
 import { UserId } from '../../../Shared/domain/Users/UserId';
+import { UserEmail } from '../../domain/UserEmail';
 
 interface UserDocument {
   _id: string;
@@ -37,6 +38,11 @@ export class MongoUserRepository extends MongoRepository<User> implements UserRe
       phone: document.phone,
     }) : null;
   }
+
+  async findByEmail(email: UserEmail): Promise<User> {
+    throw new Error('Method not implemented.');
+  }
+
   protected collectionName(): string {
     return 'courses';
   }

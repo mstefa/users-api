@@ -7,3 +7,8 @@ services:
   Apps.auth.controllers.UserPostController:
     class: ../../controllers/UserPostController
     arguments: ["@Auth.Users.application.UserCreator"]
+
+  Apps.auth.controllers.UserLoginController:
+    class: ../../controllers/UserLoginController
+    arguments: []
+    # "@Auth.Users.application.LoginCreator"

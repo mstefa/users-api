@@ -7,6 +7,12 @@ const moocConfig = convict({
     default: 'development',
     env: 'NODE_ENV'
   },
+  jwtSecret: {
+    doc: 'The token secret to sign JWTs',
+    format: String,
+    default: 'SuperSecret',
+    env: 'JWT_SECRET'
+  },
   mongo: {
     url: {
       doc: 'The Mongo connection URL',
