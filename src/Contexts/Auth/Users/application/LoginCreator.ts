@@ -14,14 +14,13 @@ export class LoginCreator{
 
   async run(req: LoginRequest): Promise<LoginReponse> {
 
-    this.repository
     const user = await this.repository.findByEmail(new UserEmail(req.email));
 
-    if(!user?.password.compare(req.password)){
+    if(!user?.password.compare(req.password)){  //Move to Domain Object
       throw new Error('not found')
     };
 
-    const token = new UserToken(user.id, user.email);
+    const token = new UserToken({id: user.id, email: user.email}); //Move to Domain Object
 
     return {token: token.toString()}
   }
