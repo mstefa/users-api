@@ -16,12 +16,10 @@ export class LoginCreator{
 
     const user = await this.repository.findByEmail(new UserEmail(req.email));
 
-    if(!user?.password.compare(req.password)){  //Move to Domain Object
-      throw new Error('not found')
-    };
+    user.validatePassword(req.password)
 
-    const token = new UserToken({id: user.id, email: user.email}); //Move to Domain Object
+    const token = new UserToken({id: user.id, email: user.email});
 
-    return {token: token.toString()}
+    return {token: token.value}
   }
 }
