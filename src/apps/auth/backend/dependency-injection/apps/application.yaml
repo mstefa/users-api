@@ -10,5 +10,5 @@ services:
 
   Apps.auth.controllers.UserLoginController:
     class: ../../controllers/UserLoginController
-    arguments: []
-    # "@Auth.Users.application.LoginCreator"
+    arguments: ["@Auth.Users.application.LoginCreator"]
+

@@ -3,6 +3,7 @@ import { LoginReponse } from './LoginResponse';
 import { LoginRequest } from './LoginRequest';
 import { UserRepository } from './../domain/UserRepository';
 import { UserEmail } from '../domain/UserEmail';
+import { User } from '../domain/User';
 
 export class LoginCreator{
 
@@ -14,12 +15,21 @@ export class LoginCreator{
 
   async run(req: LoginRequest): Promise<LoginReponse> {
 
-    const user = await this.repository.findByEmail(new UserEmail(req.email));
+    const optionalUser = await this.repository.searchByEmail(new UserEmail(req.email));
+
+    if ( !optionalUser ){
+
+      throw new Error;
+
+    }
+
+    const user = optionalUser as User
 
     user.validatePassword(req.password)
 
-    const token = new UserToken({id: user.id, email: user.email});
+    const token = new UserToken({id: user?.id, email: user?.email});
 
     return {token: token.value}
+
   }
 }

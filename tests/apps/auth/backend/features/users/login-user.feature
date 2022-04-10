@@ -12,3 +12,5 @@ Feature: Create a new user account
     }
     """
     Then the response status code should be 202
+    Then the response should have a body with a truthy property named "token"
+

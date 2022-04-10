@@ -35,6 +35,11 @@ Then('the response should be empty', () => {
   assert.deepStrictEqual(_response.body, {});
 });
 
+Then('the response should have a body with a truthy property named {string}', (property: string) => {
+  assert.ok(_response.body[property]);
+});
+
+
 Then('the user should be save in the db with {string}', async (idValue: string) => {
   const id = new UserId(idValue);
   const user = await userRepository.search(id);

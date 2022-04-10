@@ -39,8 +39,20 @@ export class MongoUserRepository extends MongoRepository<User> implements UserRe
     }) : null;
   }
 
-  async findByEmail(email: UserEmail): Promise<User> {
-    throw new Error('Method not implemented.');
+  async searchByEmail(email: UserEmail): Promise<Nullable<User>> {
+    const collection = await this.collection();
+    const document = await collection.findOne<UserDocument>({ email: email.value });
+    return document ? User.fromPrimitives({
+      id: document._id,
+      userName: document.userName,
+      password: document.password,
+      firstName: document.firstName,
+      lastName: document.lastName,
+      email: document.email,
+      roles: document.roles,
+      country: document.country,
+      phone: document.phone,
+    }) : null;
   }
 
   protected collectionName(): string {

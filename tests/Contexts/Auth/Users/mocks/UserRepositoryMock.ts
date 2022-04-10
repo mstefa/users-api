@@ -1,6 +1,7 @@
 import { UserId } from '../../../../../src/Contexts/Auth/Shared/domain/Users/UserId';
 import { User } from '../../../../../src/Contexts/Auth/Users/domain/User';
 import { UserEmail } from '../../../../../src/Contexts/Auth/Users/domain/UserEmail';
+import { Nullable } from '../../../../../src/Contexts/Shared/domain/Nullable';
 import { UserMother } from '../domain/UserMother';
 import { UserRepository } from './../../../../../src/Contexts/Auth/Users/domain/UserRepository';
 export class UserRepositoryMock implements UserRepository{
@@ -12,11 +13,11 @@ export class UserRepositoryMock implements UserRepository{
     this.mockSave(user);
   }
 
-  search(id: UserId): Promise<User> {
+  search(id: UserId): Promise<Nullable<User>> {
     throw new Error('Method not implemented.');
   }
 
-  findByEmail(email: UserEmail): Promise<User> {
+  searchByEmail(email: UserEmail): Promise<Nullable<User>> {
     return Promise.resolve(this.mockUser);
   }
 

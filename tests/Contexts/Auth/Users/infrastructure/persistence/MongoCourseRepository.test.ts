@@ -27,4 +27,15 @@ describe('UserRepository', () => {
     }
     )
   })
+  describe('#searchByEmail', () => {
+    it('return the same user', async () => {
+      const expected = UserMother.random()
+
+      await repository.save(expected);
+      const user = await repository.searchByEmail(expected.email)
+
+      expect(expected).toEqual(user);
+    }
+    )
+  })
 })

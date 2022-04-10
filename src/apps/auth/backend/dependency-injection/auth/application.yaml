@@ -17,3 +17,7 @@ services:
   Auth.Users.application.UserCreator:
     class: ../../../../../Contexts/Auth/Users/application/UserCreator
     arguments: ['@Auth.Users.domain.UserRepository']
+
+  Auth.Users.application.LoginCreator:
+    class: ../../../../../Contexts/Auth/Users/application/LoginCreator
+    arguments: ['@Auth.Users.domain.UserRepository']
