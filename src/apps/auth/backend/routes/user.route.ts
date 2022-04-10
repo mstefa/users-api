@@ -18,16 +18,15 @@ export const register = (router: Router) => {
         body('phone_number').exists().isString(),
       ];
 
-    const UserPostController: UserPostController = container.get('Apps.auth.controllers.UserPostController');
-    router.post('/users', reqCreateUserSchema, validateReqSchema, (req: Request, res: Response) => UserPostController.run(req, res));
+    const userPostController: UserPostController = container.get('Apps.auth.controllers.UserPostController');
+    router.post('/users', reqCreateUserSchema, validateReqSchema, (req: Request, res: Response) => userPostController.run(req, res));
 
     const reqLoginUserSchema = [
       body('email').exists().isEmail(),
       body('password').exists().isString(),
     ];
 
-    const userLoginController : UserLoginController = container.get('Apps.auth.controllers.UserLoginController');
+    const userLoginController: UserLoginController = container.get('Apps.auth.controllers.UserLoginController');
     router.post('/users/login', reqLoginUserSchema, (req: Request, res: Response) => userLoginController.run(req, res));
 
   };
-

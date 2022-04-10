@@ -36,11 +36,11 @@ export class User extends AggregateRoot {
     this.phone = phone;
   }
 
-  validatePassword(givenPassword:string){
+  validatePassword(givenPassword: string) {
 
-    if(!this.password.compare(givenPassword)){
-      throw InvalidCredentialsError
-    };
+    if (!this.password.compare(givenPassword)) {
+      throw InvalidCredentialsError;
+    }
 
   }
 
