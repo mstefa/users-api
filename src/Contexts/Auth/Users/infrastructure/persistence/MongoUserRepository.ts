@@ -3,6 +3,7 @@ import { User } from './../../domain/User';
 import { MongoRepository } from '../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
 import { Nullable } from '../../../../Shared/domain/Nullable';
 import { UserId } from '../../../Shared/domain/Users/UserId';
+import { UserEmail } from '../../domain/UserEmail';
 
 interface UserDocument {
   _id: string;
@@ -37,6 +38,23 @@ export class MongoUserRepository extends MongoRepository<User> implements UserRe
       phone: document.phone,
     }) : null;
   }
+
+  async searchByEmail(email: UserEmail): Promise<Nullable<User>> {
+    const collection = await this.collection();
+    const document = await collection.findOne<UserDocument>({ email: email.value });
+    return document ? User.fromPrimitives({
+      id: document._id,
+      userName: document.userName,
+      password: document.password,
+      firstName: document.firstName,
+      lastName: document.lastName,
+      email: document.email,
+      roles: document.roles,
+      country: document.country,
+      phone: document.phone,
+    }) : null;
+  }
+
   protected collectionName(): string {
     return 'courses';
   }

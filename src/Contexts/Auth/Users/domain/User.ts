@@ -1,3 +1,4 @@
+import { InvalidCredentialsError } from './../../../Shared/domain/errors/index';
 import { UserCountry } from './UserCountry';
 import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
 import { UserId } from '../../Shared/domain/Users/UserId';
@@ -33,6 +34,14 @@ export class User extends AggregateRoot {
     this.roles = roles;
     this.country = country;
     this.phone = phone;
+  }
+
+  validatePassword(givenPassword: string) {
+
+    if (!this.password.compare(givenPassword)) {
+      throw InvalidCredentialsError;
+    }
+
   }
 
   toPrimitives() {
