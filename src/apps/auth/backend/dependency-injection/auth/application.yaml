@@ -14,10 +14,14 @@ services:
     class: ../../../../../Contexts/Auth/Users/infrastructure/persistence/MongoUserRepository
     arguments: ['@Auth.ConnectionManager']
 
+  Shared.infrastructure.bus.Publisher:
+    class: ../../../../../Contexts/Shared/infrastructure/bus/rabbitmq/RabbitMqMessagePublisher
+    arguments: []
+
   Auth.Users.application.UserCreator:
     class: ../../../../../Contexts/Auth/Users/application/UserCreator
-    arguments: ['@Auth.Users.domain.UserRepository']
-
+    arguments: ['@Auth.Users.domain.UserRepository', '@Shared.infrastructure.bus.Publisher']
+# , '@Shared.infrastructure.bus.Publisher'
   Auth.Users.application.LoginCreator:
     class: ../../../../../Contexts/Auth/Users/application/LoginCreator
     arguments: ['@Auth.Users.domain.UserRepository']

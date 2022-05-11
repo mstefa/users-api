@@ -1,3 +1,5 @@
+import { UserCreated } from './../domain/UserCreated';
+import { MessagePublisher } from './../../../Shared/domain/bus/MessagePublisher';
 import { User } from '../domain/User';
 import { UserCountry } from '../domain/UserCountry';
 import { UserEmail } from '../domain/UserEmail';
@@ -14,9 +16,11 @@ import { CreateUserRequest } from './CreateUserRequest';
 export class UserCreator {
 
   private repository: UserRepository;
+  private publisher : MessagePublisher
 
-  constructor(repository: UserRepository) {
+  constructor(repository: UserRepository, publisher : MessagePublisher) {
     this.repository = repository;
+    this.publisher  = publisher;
   }
 
   async run(request: CreateUserRequest): Promise<void> {
@@ -32,7 +36,11 @@ export class UserCreator {
       phone: new UserPhone(request.phone_number)
     });
 
-    return this.repository.save(user);
+    this.repository.save(user);
+
+    this.publisher.publish(new UserCreated(user))
+
+    return Promise.resolve();
   }
 
 }
