@@ -1,4 +1,4 @@
-import { Uuid } from "../value-objects/Uuid";
+import { UuidGenerator } from './../../infrastructure/utils/uuidGenerator/UuidGenerator';
 
 type MetaInfo = {
   env?: string
@@ -7,14 +7,14 @@ type MetaInfo = {
 
 export default abstract class Message {
 
-  id: Uuid;
+  id: string;
   type: string;
   occurred_on: string;
   attributes: any;
   meta : MetaInfo | undefined;
 
  constructor(entinty :  string, event: string){
-  this.id = new Uuid('ef8ac118-8d7f-49cc-abec-78e0d05af80a');
+  this.id = UuidGenerator.generate().toString();
   this.type = `mstefa.user-api.1.event.${entinty}.${event}`;
   this.occurred_on = new Date().toISOString();
  }

@@ -28,7 +28,7 @@ export class RabbitMqMessagePublisher implements MessagePublisher {
   publish(message: Message): void {
 
     this.createQueueIfNotExists(message.type)
-    this.channel.sendToQueue(message.type, Buffer.from('message')) //TODO
+    this.channel.sendToQueue(message.type, Buffer.from(JSON.stringify(message)))
     return;
   }
 
