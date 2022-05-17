@@ -29,7 +29,7 @@ export class UserPostController implements Controller {
           roles, country_id, phone_number });
         res.status(httpStatus.CREATED).send();
     } catch (e) {
-      console.log(e);
+      console.error(e);
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send();
     }
   }

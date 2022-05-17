@@ -13,8 +13,8 @@ export default class ConfirmUserMail implements DomainEventSubscriber<UserCreate
   }
 
   async on(domainEvent: UserCreatedEvent): Promise<void> {
-    console.log('consumer event');
+
     // const userEmailAddress = new UserEmail(domainEvent.userEmailAddress);
-    console.log(domainEvent);
+    console.log(domainEvent.eventId);
   }
 }

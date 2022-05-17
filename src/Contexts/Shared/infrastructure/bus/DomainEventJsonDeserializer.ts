@@ -15,7 +15,7 @@ export class DomainEventJsonDeserializer {
     if (!eventClass) {
       return;
     }
-    console.log(eventData);
+
     return eventClass.fromPrimitives(
       eventData.attributes.aggregateId,
       eventData.id,
