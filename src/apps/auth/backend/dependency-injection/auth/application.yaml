@@ -4,6 +4,11 @@ services:
       class: ../../../../../Contexts/Auth/Shared/infrastructure/persistence/mongo/MongoConfigFactory
       method: 'createConfig'
 
+  Auth.Users.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Auth/Shared/infrastructure/bus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
   Auth.ConnectionManager:
     factory:
       class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
@@ -14,10 +19,19 @@ services:
     class: ../../../../../Contexts/Auth/Users/infrastructure/persistence/MongoUserRepository
     arguments: ['@Auth.ConnectionManager']
 
+  # Shared.infrastructure.bus.Publisher:
+  #   class: ../../../../../Contexts/Shared/infrastructure/bus/rabbitmq/RabbitMqMessagePublisher
+  #   arguments: []
+
+  Auth.notifications.ConfirmUserMail:
+    class: ../../../../../Contexts/Auth/Users/application/ConfirmUserMail.ts
+    tags:
+      - { name: 'domainEventSubscriber' }
+
   Auth.Users.application.UserCreator:
     class: ../../../../../Contexts/Auth/Users/application/UserCreator
-    arguments: ['@Auth.Users.domain.UserRepository']
-
+    arguments: ['@Auth.Users.domain.UserRepository', '@Shared.EventBus']
+# , '@Shared.infrastructure.bus.Publisher'
   Auth.Users.application.LoginCreator:
     class: ../../../../../Contexts/Auth/Users/application/LoginCreator
     arguments: ['@Auth.Users.domain.UserRepository']

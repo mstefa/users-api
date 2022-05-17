@@ -2,13 +2,16 @@ import { UserCreator } from './../../../../../src/Contexts/Auth/Users/applicatio
 import { UserMother } from "../domain/UserMother";
 import { CreateUserRequestMother } from "./CreateUserRequestMother"
 import { UserRepositoryMock } from '../mocks/UserRepositoryMock';
+import EventBusMock from '../mocks/EventBusMock';
 
 let repository: UserRepositoryMock;
+let eventBus: EventBusMock;
 let creator: UserCreator;
 
 beforeEach(() => {
     repository = new UserRepositoryMock();
-    creator = new UserCreator(repository);
+    eventBus= new EventBusMock();
+    creator = new UserCreator(repository, eventBus);
   });
 
 describe('UserCreator', () => {
