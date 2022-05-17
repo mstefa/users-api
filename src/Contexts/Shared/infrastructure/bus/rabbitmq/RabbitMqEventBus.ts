@@ -52,7 +52,7 @@ export default class RabbitMqEventbus implements EventBus {
     }
   }
 
-  async stop(){
+  async stop() {
     this.exchange.stopConsumer();
     this.connection.close();
   }
