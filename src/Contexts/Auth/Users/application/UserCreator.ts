@@ -1,5 +1,4 @@
-import { UserCreated } from './../domain/UserCreated';
-import { MessagePublisher } from './../../../Shared/domain/bus/MessagePublisher';
+import { UserCreatedEvent } from './../domain/UserCreatedEvent';
 import { User } from '../domain/User';
 import { UserCountry } from '../domain/UserCountry';
 import { UserEmail } from '../domain/UserEmail';
@@ -12,15 +11,16 @@ import { UserRoles } from '../domain/UserRoles';
 import { UserId } from './../../Shared/domain/Users/UserId';
 import { UserRepository } from './../domain/UserRepository';
 import { CreateUserRequest } from './CreateUserRequest';
+import { EventBus } from '../../../Shared/domain/bus/EventBus';
 
 export class UserCreator {
 
   private repository: UserRepository;
-  private publisher : MessagePublisher
+  private eventBus: EventBus
 
-  constructor(repository: UserRepository, publisher : MessagePublisher) {
+  constructor(repository: UserRepository, eventBus: EventBus) {
     this.repository = repository;
-    this.publisher  = publisher;
+    this.eventBus = eventBus;
   }
 
   async run(request: CreateUserRequest): Promise<void> {
@@ -38,7 +38,7 @@ export class UserCreator {
 
     this.repository.save(user);
 
-    this.publisher.publish(new UserCreated(user))
+    await this.eventBus.publish([new UserCreatedEvent({aggregateId: user.id.value, email: user.email.value})]);
 
     return Promise.resolve();
   }

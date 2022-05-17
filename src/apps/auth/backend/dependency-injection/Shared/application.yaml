@@ -1,0 +1,8 @@
+services:
+  # Shared.Logger:
+  #   class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
+  #   arguments: []
+
+  Shared.EventBus:
+    class: ../../../../../Contexts/Shared/infrastructure/bus/rabbitmq/RabbitMqEventBus
+    arguments: ['@Auth.Users.RabbitMqConfig']
