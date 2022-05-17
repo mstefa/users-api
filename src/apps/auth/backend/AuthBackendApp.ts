@@ -9,11 +9,13 @@ import { Definition } from 'node-dependency-injection';
 
 export class AuthBackendApp {
   server?: Server;
+  eventBus?: EventBus;
 
   async start() {
     const port = process.env.PORT || '5000';
     this.server = new Server(port);
-    await this.registerSubscribers();
+    this.eventBus = await this.registerSubscribers();
+    await this.eventBus?.start();
     return this.server.listen();
   }
 
@@ -22,6 +24,7 @@ export class AuthBackendApp {
   }
 
   async stop() {
+    await this.eventBus?.stop();
     return this.server?.stop();
   }
 
@@ -36,7 +39,7 @@ export class AuthBackendApp {
     eventBus.setDomainEventMapping(domainEventMapping);
     eventBus.addSubscribers(subscribers);
 
-    await eventBus.start();
+    return eventBus;
   }
 
 }

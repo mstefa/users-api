@@ -48,8 +48,13 @@ export default class RabbitMqEventbus implements EventBus {
       );
     }
     catch (e) {
-      console.log(e);
+      console.error(e);
     }
+  }
+
+  async stop(){
+    this.exchange.stopConsumer();
+    this.connection.close();
   }
 
   async publish(events: Array<DomainEvent>): Promise<void> {
