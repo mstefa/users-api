@@ -7,7 +7,6 @@ import { DomainEvent } from '../../../Contexts/Shared/domain/bus/DomainEvent';
 import { DomainEventSubscriber } from '../../../Contexts/Shared/domain/bus/DomainEventSubscriber';
 import { Definition } from 'node-dependency-injection';
 
-
 export class AuthBackendApp {
   server?: Server;
 

@@ -16,7 +16,7 @@ import { EventBus } from '../../../Shared/domain/bus/EventBus';
 export class UserCreator {
 
   private repository: UserRepository;
-  private eventBus: EventBus
+  private eventBus: EventBus;
 
   constructor(repository: UserRepository, eventBus: EventBus) {
     this.repository = repository;

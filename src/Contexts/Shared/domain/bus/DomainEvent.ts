@@ -1,6 +1,5 @@
 import { UuidGenerator } from '../../infrastructure/utils/uuidGenerator/UuidGenerator';
 
-
 export abstract class DomainEvent {
   static EVENT_NAME: string;
   static fromPrimitives: (...args: any[]) => any;
@@ -11,7 +10,7 @@ export abstract class DomainEvent {
 
   constructor(eventName: string, aggregateId: string, eventId?: string, occurredOn?: Date) {
     this.aggregateId = aggregateId;
-    this.eventId = eventId || UuidGenerator.generate().toString();;
+    this.eventId = eventId || UuidGenerator.generate().toString();
     this.occurredOn = occurredOn || new Date();
     this.eventName = eventName;
   }

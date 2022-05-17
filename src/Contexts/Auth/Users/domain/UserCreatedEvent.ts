@@ -1,4 +1,4 @@
-import {DomainEvent} from "../../../Shared/domain/bus/DomainEvent";
+import {DomainEvent} from '../../../Shared/domain/bus/DomainEvent';
 // type UserRegisteredDomainEventBody = { userEmailAddress: string };
 
 type UserCreatedEventBody = { userEmail: string };

@@ -27,7 +27,7 @@ export default class RabbitMqEventbus implements EventBus {
     if (!this.deserializer) {
       throw new Error('RabbitMqEventBus has not being properly initialized, deserializer is missing');
     }
-    try{
+    try {
       await this.queue.bind(this.exchange);
       await this.queue.activateConsumer(
         async message => {
@@ -47,8 +47,8 @@ export default class RabbitMqEventbus implements EventBus {
         { noAck: false }
       );
     }
-    catch(e){
-      console.log(e)
+    catch (e) {
+      console.log(e);
     }
   }
 
